@@ -5,6 +5,7 @@ $designation = $_POST['designation'];
 $salary = $_POST['salary'];
 $city = $_POST['city'];
 $mobile = $_POST['mobile'];
+$search = $_POST['search'];
 
 $con = mysqli_connect("localhost","root","") or die("Not connected to mysql database");
 $c = "create database employee";
@@ -73,10 +74,26 @@ if($_POST['update']){
 	    if(!empty($mobile)){
 	    mysqli_query($con,"update employee set mob = $mobile where eid = $eid");
 	    }	 
-	 echo "<script>alert('Record Updated');</script>";
-	 
-	 } 
-	 
+	 echo "<script>alert('Record Updated');</script>"; 
+	 } 	 
 	 }
   }
+if($_POST['display']){
+ if(empty($eid) && empty($name) && empty($designation) && empty($salary) && empty($city) && empty($mobile)){
+     $res = mysqli_query($con,"select * from employee");
+	 while($row=mysqli_fetch_row($res)){
+	   echo $row[0].' '.$row[1].' '.$row[2].' '.$row[3].' '.$row[4].' '.$row[5].'<br>';
+	 }
+ }else{
+     // For Showing The Data By Using Employee ID
+     if(!empty($eid)){
+	    mysqli_query($con,"select * from employee where eid = $eid");
+		
+	 }
+	 if(!empty($ename)){
+	    mysqli_query($con,"select * from employee where ");
+	 }
+ }
+}
+ 
 ?>
