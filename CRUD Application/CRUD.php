@@ -24,4 +24,30 @@ if($_POST['insert']){
 	 echo "<script>alert('Record Inserted');</script>";
   }
 }
+
+if($_POST['delete']){
+  if(empty($eid) && empty($name) && empty($designation) && empty($salary) && empty($city) && empty($mobile)){
+     echo "<script>alert('At Least One Field Should Be Filled');</script>";
+  }else{
+     if(!empty($eid)){
+         mysqli_query($con,"delete from employee where eid = $eid");
+     }
+	 if(!empty($ename)){
+	    mysqli_query($con,"delete from employee where ename = $ename");
+	 } 
+	 if(!empty($designation)){
+	    mysqli_query($con,"delete from employee where designation = $designation");
+	 }
+	 if(!empty($salary)){
+	    mysqli_query($con,"delete from employee where salary = $salary");
+	 }
+	 if(!empty($city)){
+	    mysqli_query($con,"delete from employee where city = $city");
+	 }
+	 if(!empty($mobile)){
+	    mysqli_query($con,"delete from employee where mob = $mobile");
+	 }	 
+	 echo "<script>alert('Deleted');</script>";
+  }
+}
 ?>
