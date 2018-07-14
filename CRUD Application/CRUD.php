@@ -95,5 +95,24 @@ if($_POST['display']){
 	 }
  }
 }
- 
+  
+if($_POST['searchbtn']){
+  if(empty($search)){
+    echo "<script>alert('The Search Field Should Be Fill');</script>";
+  }else{
+     $search_Query = "select * from employee where eid = $search || ename = '$search' || designation = '$search' || salary = $search || city = '$search' || mob = $search";
+	 $res = mysqli_query($con,$search_Query);
+	 <table>
+	 <th>Employee Id</th>
+	 <th>Employee Name</th>
+	 <th>Employee Designation</th>
+	 <th>Employee Salary</th>
+	 <th>Employee City</th>
+	 <th>Employee Mobile No</th>
+	  while($row = mysqli_fetch_row($res)){
+	   echo '<tr><td>'.$row[0].'</td><td>'.$row[1].'</td><td>'.$row[2].'</td><td>'.$row[3].'</td><td>'.$row[4].'</td><td>'.$row[5].'</td></tr><br>';
+	 }
+	 </table>
+  }
+}    
 ?>
