@@ -27,13 +27,13 @@ if($_POST['insert']){
 
 if($_POST['delete']){
   if(empty($eid) && empty($name) && empty($designation) && empty($salary) && empty($city) && empty($mobile)){
-     echo "<script>alert('At Least One Field Should Be Filled');</script>";
+     echo "<script>alert('At Least One Field Should Be Filled For Delete');</script>";
   }else{
      if(!empty($eid)){
          mysqli_query($con,"delete from employee where eid = $eid");
      }
 	 if(!empty($ename)){
-	    mysqli_query($con,"delete from employee where ename = $ename");
+	   // 
 	 } 
 	 if(!empty($designation)){
 	    mysqli_query($con,"delete from employee where designation = $designation");
@@ -47,7 +47,36 @@ if($_POST['delete']){
 	 if(!empty($mobile)){
 	    mysqli_query($con,"delete from employee where mob = $mobile");
 	 }	 
-	 echo "<script>alert('Deleted');</script>";
+	 echo "<script>alert('Record Deleted');</script>";
   }
 }
+
+if($_POST['update']){
+  if(empty($eid) && empty($name) && empty($designation) && empty($salary) && empty($city) && empty($mobile)){
+     echo "<script>alert('At Least One Field Should Be Filled For Update');</script>";
+  }else{
+     if(empty($eid)){
+         echo "<script>alert('Employee id Should Be Filled For Updation');</script>";
+     }else{
+	    if(!empty($ename)){
+	    mysqli_query($con,"update employee set ename = '$ename' where eid = $eid");
+		}
+		if(!empty($designation)){
+	    mysqli_query($con,"update employee set designation = '$designation' where eid = $eid");
+	    }
+		if(!empty($salary)){
+	    mysqli_query($con,"update employee set salary = $salary where eid = $eid");
+	    }
+	    if(!empty($city)){
+	    mysqli_query($con,"update employee set city = '$city' where eid = $eid");
+	    }
+	    if(!empty($mobile)){
+	    mysqli_query($con,"update employee set mob = $mobile where eid = $eid");
+	    }	 
+	 echo "<script>alert('Record Updated');</script>";
+	 
+	 } 
+	 
+	 }
+  }
 ?>
